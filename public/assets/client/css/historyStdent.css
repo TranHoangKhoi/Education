@@ -1,0 +1,117 @@
+.wrapper {
+    padding: 24px 0;
+    box-shadow: var(--box-shadow);
+}
+
+.heading {
+    border-bottom: var(--border);
+}
+
+.heading  h3 {
+    padding: 20px 24px;
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.table__wrapper {
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.table__wrapper .table__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.table__wrapper .table__content {
+    padding: 20px 0;
+}
+
+.table__wrapper .table__content table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table__wrapper .table__content th {
+    padding: 22px 8px !important;
+}
+
+.table__wrapper .table__content table,
+th,
+td {
+    border: 1px solid #eee;
+    padding: 16px 8px;
+}
+
+.table__wrapper .table__content td {
+    font-size: 1.4rem;
+}
+
+.table__wrapper .table__content .tbl__heading--item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--black-color);
+}
+
+.table__wrapper .table__content .tbl__arr--down,
+.tbl__arr--up {
+    color: #999;
+    font-size: 1.2rem;
+}
+
+.table__wrapper .table__content .tbl__arr--down {
+    display: none;
+}
+
+.table__wrapper .table__content .success {
+    color: #02b875;
+}
+
+.table__wrapper .table__control--left span {
+    font-size: 1.3rem;
+}
+
+.table__wrapper .table__control--right .tbl__ctrl--list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.table__wrapper .table__control--right .tbl__ctrl--btn {
+    padding: 8px;
+    font-size: 1.4rem;
+    border-radius: 4px;
+}
+
+.table__wrapper .table__control--right .tbl__ctrl--btn + .tbl__ctrl--btn {
+    margin-left: 8px;
+}
+
+.table__wrapper .table__control--right .ctrl__btn {
+    background-color: #ccc;
+    color: #555;
+    cursor: pointer;
+}
+
+.table__wrapper .table__control--right .num__btn {
+    padding: 8px 12px;
+}
+
+.table__wrapper .table__control--right .num__btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.table__wrapper .table__control--right .ctrl__btn.disabled {
+    background-color: #eee;
+    color: #999;
+    pointer-events: none;
+}
+
+.error {
+    color: #DF2029;
+}

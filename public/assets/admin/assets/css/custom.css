@@ -1,0 +1,73 @@
+input[type="number"] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+  }
+
+.sidebar .sidebar-brand-wrapper .sidebar-brand img {
+    height: unset;
+}
+
+.dashboard-content {
+    min-height: 360px;
+    text-align: center;
+}
+
+.dashboard-content h1 {
+    /* min-height: 360px; */
+    line-height: 360px;
+}
+
+.content-block {
+    padding: 22px 36px;
+    background-color: #191c24;
+    margin-top: 16px;
+}
+
+.btn-tbl {
+    background-color: transparent;
+    border: none;
+    color: #007bff;
+    font-size: 1.5rem;
+}
+
+.form-tbl-mn {
+    margin: 0;
+}
+
+.table {
+    margin-bottom: 24px;
+}
+
+.form-group-btn {
+    padding-top: 20px;
+}
+
+.btn-form {
+    padding: 10px 16px;
+    width: 200px;
+}
+
+.form-group {
+    padding: 10px 0;
+}
+
+.messError {
+    color: #FF3300;
+    padding: 4px 0;
+}
+
+.heading-block {
+    background-color: #191c24;
+    padding: 16px 30px;
+}
+
+.heading-block h3 {
+    margin: 0;
+    font-size: 18px;
+    letter-spacing: 1px;
+}

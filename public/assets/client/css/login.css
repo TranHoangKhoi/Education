@@ -1,0 +1,88 @@
+.wrapper_login {
+    width: 100%;
+    height: 100vh
+}
+
+.login__bg {
+
+}
+
+.login__img img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+}
+
+.login__block {
+    position: fixed;
+    background-color: #fff;
+    min-width: 400px;
+    padding: 20px 16px;
+    top: 50%;
+    /* transform: translateY(-50%); */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 50%);
+}
+
+select:focus {
+    border: none;
+    cursor: pointer;
+}
+
+.login__title {
+    margin-bottom: 28px;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    display: block;
+}
+
+.login__title--img {
+    max-width: 100%;
+    max-height: 80px;
+}
+
+.login__form {
+
+}
+
+.input__group {
+    padding: 8px;
+}
+
+.input__item {
+    border: 1px solid #eee;
+    padding: 12px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.5rem;
+    cursor: text ;
+}
+
+.input__item:focus {
+    border: 1px solid var(--primary-color);
+    box-shadow: var(--box-shadow);
+}
+
+.input__group--btn {
+    margin-top: 16px;
+}
+
+.input__btn {
+    padding: 12px;
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.input__btn:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}

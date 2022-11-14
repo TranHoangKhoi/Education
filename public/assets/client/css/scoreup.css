@@ -1,0 +1,344 @@
+:root {
+    --padding-lecturers: 20px;
+    --border-radius-btn: 4px;
+}
+
+.wrapper {
+}
+.lecturers_btn_add {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lecturers_btn_add button {
+    margin-right: 8px;
+    padding: 16px 12px;
+    width: 100px;
+    border-radius: var(--border-radius-btn);
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.lecturers_btn_add button:hover {
+    opacity: 0.8;
+}
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lecturers-semester {
+    padding: var(--padding-lecturers);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 20px;
+}
+
+.lecturers-semester .form-group {
+    margin-bottom: 24px;
+}
+
+.lecturers-semester .rows {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lecturers-semester .search-student {
+    margin-right: 8px;
+    width: 70%;
+}
+
+.lecturers-semester .search-student input {
+    flex: 1;
+    padding: 12px 8px;
+    margin-right: 8px;
+}
+
+.lecturers-semester .search__btn button {
+    width: 52px;
+    height: 100%;
+    border-radius: var(--border-radius-btn);
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.lecturers-semester label {
+    display: block;
+    font-size: 1.7rem;
+}
+
+.lecturers-semester select {
+    width: 100%;
+    margin: 8px 0px;
+    padding: 8px 4px;
+    outline: none;
+    border-radius: 4px;
+}
+
+.lecturers-semester select:focus-within {
+    border-color: #007bff;
+}
+
+.lecturers-semester input {
+    border: 1px solid gray;
+    padding: 8px 4px;
+    width: 100%;
+    border-radius: var(--border-radius-btn);
+}
+
+.lecturers-semester p {
+    font-size: 1.8rem;
+}
+
+.lecturers__name-table {
+    margin-bottom: 20px;
+    box-shadow: var(--box-shadow);
+    padding-bottom: 24px;
+}
+
+.lecturers__name-table .lecturers__name {
+    padding: var(--padding-lecturers);
+    border-bottom: 1px solid #ebedf2;
+}
+
+.lecturers__name-table .lecturers__name p {
+    font-size: 1.8rem;
+}
+
+.lecturers__name-table .lecturers__btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--padding-lecturers);
+
+    
+}
+
+.lecturers__name-table .lecturers__btn button {
+    padding: 8px;
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.lecturers__name-table .lecturers__btn button:nth-child(1) {
+    border-top-left-radius: var(--border-radius-btn);
+    border-bottom-left-radius: var(--border-radius-btn);
+}
+
+.lecturers__name-table .lecturers__btn button:nth-child(5) {
+    border-top-right-radius: var(--border-radius-btn);
+    border-bottom-right-radius: var(--border-radius-btn);
+}
+
+.lecturers__name-table .lecturers__btn button:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.lecturers__name-table .table__lecturers {
+    padding: 0 20px;
+}
+
+.lecturers__name-table .table__lecturers .table__control--left span {
+    font-size: 1.3rem;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .ctrl__btn.disabled {
+    background-color: #eee;
+    color: #999;
+    pointer-events: none;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .tbl__ctrl--list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .tbl__ctrl--btn {
+    padding: 8px;
+    font-size: 1.4rem;
+    border-radius: 4px;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .tbl__ctrl--btn + .tbl__ctrl--btn {
+    margin-left: 8px;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .ctrl__btn {
+    background-color: #ccc;
+    color: #555;
+    cursor: pointer;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .num__btn {
+    padding: 8px 12px;
+}
+
+.lecturers__name-table .table__lecturers .table__control--right .num__btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.lecturers__name-table .table__lecturers .table__content {
+    padding: 4px 0;
+    margin-bottom: 20px;
+}
+
+.lecturers__name-table .table__lecturers .table__content table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.lecturers__name-table .table__lecturers .table__content th {
+    padding: 22px 8px !important;
+}
+
+.lecturers__name-table .table__lecturers .table__content table,
+th,
+td {
+    border: 1px solid #eee;
+    padding: 16px 8px;
+}
+
+.lecturers__name-table .table__lecturers .table__content td {
+    font-size: 1.4rem;
+}
+
+.lecturers__name-table .table__lecturers .table__content .table__control {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lecturers__name-table .table__lecturers .table__content .tbl__heading--item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--black-color);
+}
+
+.lecturers__name-table .table__lecturers .table__content .tbl__arr--down,
+.tbl__arr--up {
+    color: #999;
+    font-size: 1.2rem;
+}
+
+.lecturers__name-table .table__lecturers .table__content .tbl__arr--down,
+.tbl__arr--up {
+    color: #999;
+    font-size: 1.2rem;
+}
+
+.lecturers__name-table .table__lecturers .table__content .tbl__arr--down {
+    display: none;
+}
+
+.lecturers__name-table .table__lecturers .table__content .success {
+    color: #02b875;
+}
+
+.form-input-tbl {
+    width: 100%;
+    /* text-align: center; */
+}
+
+.form-flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;    
+    padding-bottom: 16px;
+}
+
+.form-flex + .form-flex {
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.form-flex-group {
+    flex: 1;
+    display: flex;
+    align-items: center
+}
+
+.form-flex-tiltle {
+    padding: 8px 12px 8px 0;
+}
+
+.form-flex-input {
+    flex: 1;
+}
+
+.form-flex-input input {
+    font-size: 1.4rem;
+    padding: 8px 12px;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-2 {
+    flex: 2.5;
+}
+
+.flex-1 {
+    flex: 0.5;
+}
+
+.form-flex-group:nth-child(1) {
+    margin-right: 20px;
+}
+
+.form-flex-group:nth-child(2) {
+    margin-left: 20px;
+}
+
+.icon-plus__block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.icon-plus__item {
+    /* background-color: #02b875; */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 6px 13px;
+    border: 1px solid #CCC;
+    color: #333;
+    cursor: pointer;
+}
+
+.icon-plus__item span {
+    font-size: 1.4rem;
+    margin-right: 2px;
+}
+
+.icon-plus__item ion-icon {
+    font-size: 1.8rem;
+    position: relative;
+    top: 1px;
+    padding: 0 4px;
+}
+
+.form-icon-close {
+    justify-content: center;
+}
+
+.form-icon-close ion-icon {
+    font-size: 2.4rem;
+    position: relative;
+    top: 1px;
+    cursor: pointer;
+    padding: 4px 8px;
+}
+
+.disabled-btn {
+    cursor: default;
+    opacity: 0.5;
+}

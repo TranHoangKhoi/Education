@@ -1,0 +1,108 @@
+:root {
+    --size--notifications: 1.5rem;
+    --color--notifications: #fff;
+    --padding--notifications: 0 25px;
+    --padding--notifications--full: 1.1rem;
+    --font-weight: 700;
+    --height--notifications: 60vh;
+    --box-shadow: 0 0 28px 0 rgb(82 63 105 / 8%);
+}
+
+
+.Wrapper {
+    box-shadow: var(--box-shadow);
+    padding: 16px 8px;
+}
+.kt-link {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    color: #505ae2;
+    font-weight: var(--font-weight);
+    font-size: 2.4rem;
+}
+.Link {
+    color: red !important;
+    font-size: var(--size--notifications);
+    font-weight: bold;
+    line-height: 2rem;
+    letter-spacing: 0.02rem;
+}
+
+.newsletter-student {
+    padding: var(--padding--notifications--full);
+    /* max-height: var(--height--notifications); */
+    /* overflow: auto; */
+}
+
+.newsletter-student::-webkit-scrollbar {
+    overflow-x: hidden;
+    -ms-overflow-style: none; /* khai báo sử dụng Internet Explorer, Edge */
+    scrollbar-width: none;
+}
+
+.witget1__item {
+    padding: 1.7rem 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-bottom: 0.07rem dashed #ebedf2;
+}
+
+.witget1__title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #595d6e;
+}
+.container-grid__full {
+    /* // padding: var(--padding--notifications--full); */
+    height: var(--height--notifications);
+}
+.border-right {
+    border-right: 1px solid #ebedf2;
+}
+.seen_more {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: var(--color--notifications) !important;
+    padding: 5px 5px 5px;
+    display: block;
+    width: 80px;
+    text-align: center;
+}
+
+.list-notifi {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.list-notifi::-webkit-scrollbar {
+    /* width: 12px; */
+    display: none;
+}
+
+
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(96, 95, 95, 0.8); 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(67, 66, 66, 0.4); 
+}

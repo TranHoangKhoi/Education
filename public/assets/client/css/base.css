@@ -1,0 +1,83 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@200;300;400;500;600;700&display=swap');
+
+:root {
+    --primary-color: #5d78ff;
+    --background-color: #c4cff9;
+    --black-color: #333;
+    --hover-menu-aside: #f6f7fd;
+    --color-icon-aside: #c4cff9;
+    --background-header-sidebar: #fff;
+    /* // admin */
+    --primary-admin: #0d6efd;
+    --color-admin: #fff;
+    /* // Dashboard Layout */
+    --dashboard-layout-height-header: 70px;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #212529;
+    text-rendering: optimizespeed;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+button,
+input,
+[tabindex] {
+    border: none;
+    outline: none;
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.App {
+    color: var(--primary);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.btn-form {
+    padding: 12px 32px;
+    background-color: var(--primary-color);
+    color: #fff;
+    font-size: 1.4rem;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+       -moz-appearance: textfield;
+            appearance: textfield;
+  }
+  input[type=number]::-webkit-inner-spin-button, 
+  input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+  }
+
+  .btn {
+    cursor: pointer;
+    background-color: transparent;
+  }
