@@ -281,6 +281,7 @@ class AuthController extends Controller
     {
         if (!Auth::check()) {
             return view("auth.login");
+            // return redirect()->route('auth.formLogin');
         } else {
             return redirect()->back();
         }

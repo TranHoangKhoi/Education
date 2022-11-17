@@ -12,7 +12,7 @@
                           A simple success alert—check it out!
                         </div>
                       @endif --}}
-                      
+
                       @if($errors->any())
                         <div class="alert alert-danger" role="alert">
                           Kiểm tra lại dữ liệu !!
@@ -21,13 +21,13 @@
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('msg') }}
                             {{-- @php --}}
-                                {{ Session::forget('msg') }}  
+                                {{ Session::forget('msg') }}
                             {{-- @endphp --}}
                         </div>
                       @endif
                       <div class="form-group">
                         <label for="nameST">Họ và tên</label>
-                        <input id="nameST" required class="form-control" type="text" value="{{old('name')}}" name="name"  placeholder="Trần Văn A">
+                        <input id="nameST" required class="form-control" type="text" value="{{old('title')}}" name="name"  placeholder="Trần Văn A">
                         @error('name')
                             <span class="messError">{{$message}}</span>
                         @enderror

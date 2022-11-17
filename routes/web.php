@@ -7,8 +7,12 @@ use App\Http\Controllers\NotifyCateController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\LecturersController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\LecturersLayoutController;
+use App\Http\Controllers\MajorsController;
+use App\Http\Controllers\NotifyController;
 use App\Http\Controllers\StudentLayoutController;
+use App\Http\Controllers\SubjectController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +55,7 @@ Route::middleware(['LecturersCheck'])->group(function () {
     });
 });
 
-Route::get('/login', [AuthController::class, 'showFormLogin'])->name('auth.formLogin');
+Route::get('/loginAcount', [AuthController::class, 'showFormLogin'])->name('auth.formLogin');
 Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.handleLogin');
 
@@ -64,7 +68,10 @@ Route::middleware(['AdminCheck'])->group(function () {
         Route::get('/dashboard', function () {
             return view('admin.pages.dashboard');
         })->name('admin.dashboard');
-        Route::resource('catenotification', NotifyCateController::class);
+        Route::resource('notify', NotifyController::class);
+        Route::resource('class', ClassController::class);
+        Route::resource('majors', MajorsController::class);
+        Route::resource('subject', SubjectController::class);
         Route::resource('student', StudentController::class);
         Route::resource('lecturers', LecturersController::class);
         Route::resource('admins', AdminController::class);

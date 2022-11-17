@@ -227,5 +227,5 @@
     </body>
 
     @yield('srcJS')
-    
+
 </html>

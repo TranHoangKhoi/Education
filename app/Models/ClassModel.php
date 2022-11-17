@@ -11,7 +11,7 @@ class ClassModel extends Model
     protected $table = 'class';
 
     protected $fillable = [
-       'id_course','id_major', 'name_class','created_at','update_at'
+       'id_course','id_major', 'name_id','created_at','update_at'
     ];
 
     public function student() {

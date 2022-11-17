@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($listStudent as $key => $student)    
+                        @foreach ($listStudent as $key => $student)
                             <tr>
                                 <th scope="row">{{$key}}</th>
                                 <td>{{$student->mssv}}</td>
@@ -42,7 +42,7 @@
                                 </td>
                             </tr>
                         @endforeach
-                            
+
                     </tbody>
                 </table>
                 {{$listStudent->links()}}
@@ -51,7 +51,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('msg') }}
                             {{-- @php --}}
-                                {{ Session::forget('msg') }}  
+                                {{ Session::forget('msg') }}
                             {{-- @endphp --}}
                         </div>
                 @endif

@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\Subject;
 use App\Http\Resources\SubjectRecource;
+use App\Models\ClassModel;
+use App\Models\Majors;
+use App\Models\Semester;
+use App\Models\SubjectType;
 use Exception;
 use Mockery\Matcher\Subset;
 
@@ -19,64 +23,80 @@ class SubjectController extends Controller
      */
     public function index(Request $request)
     {
-        $input = $request->all();
-        $input['limit'] = $request->limit;
-        try {
-            $data  =  Subject::select(
-                'subject.id',
-                'name_id_subject',
-                'name',
-                'subject.id_major',
-                'subject.id_semester',
-                'subject.id_class',
-                'subject.type',
-                'subject.created_at',
-                'subject.updated_at'
-            )
-                ->join('majors', 'subject.id_major', '=', 'majors.id')
-                ->leftjoin('semester', 'subject.id_semester', '=', 'semester.id')
-                ->leftjoin('class', 'subject.id_class', '=', 'class.id')
-                ->leftjoin('subject_type', 'subject.type', '=', 'subject_type.id')
+        // $input = $request->all();
+        // $input['limit'] = $request->limit;
+        // try {
+        //     $data  =  Subject::select(
+        //         'subject.id',
+        //         'name_id_subject',
+        //         'name',
+        //         'subject.id_major',
+        //         'subject.id_semester',
+        //         'subject.id_class',
+        //         'subject.type',
+        //         'subject.created_at',
+        //         'subject.updated_at'
+        //     )
+        //         ->join('majors', 'subject.id_major', '=', 'majors.id')
+        //         ->leftjoin('semester', 'subject.id_semester', '=', 'semester.id')
+        //         ->leftjoin('class', 'subject.id_class', '=', 'class.id')
+        //         ->leftjoin('subject_type', 'subject.type', '=', 'subject_type.id')
 
-                ->where(function ($query) use ($input) {
-                    //Lọc theo tên của Môn học
-                    if (!empty($input['name'])) {
-                        $query->where('name', 'like', '%' . $input['name'] . '%');
-                    }
-                    //Lọc theoe Mã môn học
-                    if (!empty($input['nameId'])) {
-                        $query->where('name_id_subject', 'like', '%' . $input['nameId'] . '%');
-                    }
-                    //Lọc theo tên Chuyên ngành
-                    if (!empty($input['nameMajor'])) {
-                        $query->where('majors.name_major', 'like', '%' . $input['nameMajor'] . '%');
-                    }
-                    //Lọc theo tên Lớp
-                    if (!empty($input['nameClass'])) {
-                        $query->where('class.name_class', 'like', '%' . $input['nameClass'] . '%');
-                    }
-                    //Lọc theo Loại môn học
-                    if (!empty($input['subjectType'])) {
-                        $query->where('subject_type.type_name', 'like', '%' . $input['subjectType'] . '%');
-                    }
-                    //Lọc theo Kì
-                    if (!empty($input['nameSemester'])) {
-                        $query->where('semester.name_id', 'like', '%' . $input['nameSemester'] . '%');
-                    }
-                })->orderBy('subject.created_at', 'desc')->paginate(!empty($input['limit']) ? $input['limit'] : 10);
-            //    $resource = NotifyResource::collection($data)->response()->getdata(true);
-            $resource =  SubjectRecource::collection($data);
-        } catch (Exception $e) {
-            return response()->json([
-                'status' => 'Error',
-                'message' => $e->getMessage()
-            ], 400);
-        }
-        return response()->json([
-            'data' => $resource,
-            'success' => true,
-            'message' => 'Lấy dữ liệu thành công!',
-        ], 200);
+        //         ->where(function ($query) use ($input) {
+        //             //Lọc theo tên của Môn học
+        //             if (!empty($input['name'])) {
+        //                 $query->where('name', 'like', '%' . $input['name'] . '%');
+        //             }
+        //             //Lọc theoe Mã môn học
+        //             if (!empty($input['nameId'])) {
+        //                 $query->where('name_id_subject', 'like', '%' . $input['nameId'] . '%');
+        //             }
+        //             //Lọc theo tên Chuyên ngành
+        //             if (!empty($input['nameMajor'])) {
+        //                 $query->where('majors.name_major', 'like', '%' . $input['nameMajor'] . '%');
+        //             }
+        //             //Lọc theo tên Lớp
+        //             if (!empty($input['nameClass'])) {
+        //                 $query->where('class.name_class', 'like', '%' . $input['nameClass'] . '%');
+        //             }
+        //             //Lọc theo Loại môn học
+        //             if (!empty($input['subjectType'])) {
+        //                 $query->where('subject_type.type_name', 'like', '%' . $input['subjectType'] . '%');
+        //             }
+        //             //Lọc theo Kì
+        //             if (!empty($input['nameSemester'])) {
+        //                 $query->where('semester.name_id', 'like', '%' . $input['nameSemester'] . '%');
+        //             }
+        //         })->orderBy('subject.created_at', 'desc')->paginate(!empty($input['limit']) ? $input['limit'] : 10);
+        //     //    $resource = NotifyResource::collection($data)->response()->getdata(true);
+        //     $resource =  SubjectRecource::collection($data);
+        // } catch (Exception $e) {
+        //     return response()->json([
+        //         'status' => 'Error',
+        //         'message' => $e->getMessage()
+        //     ], 400);
+        // }
+        // return response()->json([
+        //     'data' => $resource,
+        //     'success' => true,
+        //     'message' => 'Lấy dữ liệu thành công!',
+        // ], 200);
+        $listSubject = Subject::get();
+
+        // dd($listCate);
+        return view('admin.pages.subject.list', compact('listSubject'));
+
+    }
+
+    public function create()
+    {
+        // $notifyCate = NotificationCate::get();
+        $semester = Semester::get();
+        // $course = Course::get();
+        $class =ClassModel::orderBy('id','DESC')->get();
+        $majors = Majors::get();
+        $subjectType = SubjectType::get();
+        return view('admin.pages.subject.create', compact('majors','semester','class','subjectType'));
     }
     /**
      * Store a newly created resource in storage.
@@ -87,45 +107,75 @@ class SubjectController extends Controller
     public function store(Request $request)
     {
         // $dataCreate = $request->all();
-        $validator = Validator::make($request->all(), [
-            'id_semester' => 'required',
-            'id_class' => 'required',
-            'id_major' => 'required',
-            'subject_type' => 'required',
-            'name_id_subject' => 'required|unique:subject',
-            'name' => 'required|min:6|unique:subject',
-            'credit' => 'required',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'id_semester' => 'required',
+        //     'id_class' => 'required',
+        //     'id_major' => 'required',
+        //     'subject_type' => 'required',
+        //     'name_id_subject' => 'required|unique:subject',
+        //     'name' => 'required|min:6|unique:subject',
+        //     'credit' => 'required',
+        // ]);
 
-        if ($validator->fails()) {
-            $arr = [
-                'success' => false,
-                'message' => 'Lỗi kiểm tra dữ liệu',
-                'data' => $validator->errors()
-            ];
-            return response()->json($arr, 200);
+        // if ($validator->fails()) {
+        //     $arr = [
+        //         'success' => false,
+        //         'message' => 'Lỗi kiểm tra dữ liệu',
+        //         'data' => $validator->errors()
+        //     ];
+        //     return response()->json($arr, 200);
+        // }
+
+        // $data = Subject::create(
+        //     [
+        //         'id_semester' => $request->id_semester,
+        //         'id_class' => $request->id_class,
+        //         'id_major' => $request->id_major,
+        //         'subject_type' => $request->subject_type,
+        //         'name_id_subject' => strtoupper($request->name_id_subject),
+        //         'name' => mb_strtoupper(mb_substr($request->name, 0, 1)) . mb_substr($request->name, 1),
+        //         'credit' => $request->credit,
+        //     ]
+
+        // );
+
+        // $subjectResource = new SubjectRecource($data);
+
+        // return response()->json([
+        //     'data' => $subjectResource,
+        //     'success' => true,
+        //     'message' => 'Thêm môn học thành công',
+        // ]);
+        {
+            $Input = $request->all();
+            $request->validate([
+                    'id_semester' => 'required',
+                    'id_class' => 'required',
+                    'id_major' => 'required',
+                    'subject_type' => 'required',
+                    'name_id_subject' => 'required|unique:subject',
+                    'name' => 'required|min:6|unique:subject',
+                    'credit' => 'required',
+            ]);
+
+
+            // dd($userStore->id);
+
+                Subject::create(
+                    [
+                                'id_semester' => $request->id_semester,
+                                'id_class' => $request->id_class,
+                                'id_major' => $request->id_major,
+                                'subject_type' => $request->subject_type,
+                                'name_id_subject' => strtoupper($request->name_id_subject),
+                                'name' => mb_strtoupper(mb_substr($request->name, 0, 1)) . mb_substr($request->name, 1),
+                                'credit' => $request->credit,
+
+                    ]
+                );
+
+            return redirect()->back()->with('msg', 'Thêm môn học thành công');
         }
-
-        $data = Subject::create(
-            [
-                'id_semester' => $request->id_semester,
-                'id_class' => $request->id_class,
-                'id_major' => $request->id_major,
-                'subject_type' => $request->subject_type,
-                'name_id_subject' => strtoupper($request->name_id_subject),
-                'name' => mb_strtoupper(mb_substr($request->name, 0, 1)) . mb_substr($request->name, 1),
-                'credit' => $request->credit,
-            ]
-
-        );
-
-        $subjectResource = new SubjectRecource($data);
-
-        return response()->json([
-            'data' => $subjectResource,
-            'success' => true,
-            'message' => 'Thêm môn học thành công',
-        ]);
     }
 
     /**
@@ -153,6 +203,16 @@ class SubjectController extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $semester = Semester::get();
+        $majors = Majors::get();
+        $class = ClassModel::get();
+        $subjectType = SubjectType::get();
+        $subject = Subject::find($id);
+        return view('admin.pages.subject.edit', compact('semester','majors','class','subjectType','subject'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -162,15 +222,68 @@ class SubjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $subject =  Subject::find($id);
-        // dd($request->all());
+        // $subject =  Subject::find($id);
+        // // dd($request->all());
+        // if ($subject) {
+        //     // $studentsResource = new Stu dentsResource($student);
+
+        //     // $dataUpdate = $request->all();
+        //     // dd($student);
+
+        //     $validator = Validator::make($request->all(), [
+        //         'id_semester' => 'required',
+        //         'id_class' => 'required',
+        //         'id_major' => 'required',
+        //         'subject_type' => 'required',
+        //         'name_id_subject' => 'required',
+        //         'name' => 'required|min:6',
+        //         'credit' => 'required',
+
+        //     ]);
+
+        //     if ($validator->fails()) {
+        //         $arr = [
+        //             'success' => false,
+        //             'message' => 'Lỗi kiểm tra dữ liệu',
+        //             'data' => $validator->errors()
+        //         ];
+        //         return response()->json($arr, 200);
+        //     }
+
+        //     // $student = Students::save($dataUpdate);
+        //     $subject->update(
+        //         [
+        //             'id_semester' => $request->id_semester,
+        //             'id_class' => $request->id_class,
+        //             'id_major' => $request->id_major,
+        //             'subject_type' => $request->subject_type,
+        //             'name_id_subject' => strtoupper($request->name_id_subject),
+        //             'name' => mb_strtoupper(mb_substr($request->name, 0, 1)) . mb_substr($request->name, 1),
+        //             'credit' => $request->credit,
+        //         ]
+        //     );
+
+        //     $subjectResource = new SubjectRecource($subject);
+        //     // return response()->json([
+        //     //     'data' => $subjectResource,
+        //     // ]);
+
+        //     return response()->json([
+        //         'data' => $subjectResource,
+        //         'status' => true,
+        //         'message' => 'Get data Sucess'
+        //     ]);
+        // } else {
+        //     return response()->json([
+        //         'data' => '',
+        //         'status' => false,
+        //         'message' => 'id not found'
+        //     ]);
+        // }
+        $subject = Subject::find($id);
         if ($subject) {
-            // $studentsResource = new Stu dentsResource($student);
-
-            // $dataUpdate = $request->all();
-            // dd($student);
-
-            $validator = Validator::make($request->all(), [
+            $Input = $request->all();
+            $request->validate([
                 'id_semester' => 'required',
                 'id_class' => 'required',
                 'id_major' => 'required',
@@ -178,19 +291,10 @@ class SubjectController extends Controller
                 'name_id_subject' => 'required',
                 'name' => 'required|min:6',
                 'credit' => 'required',
+        ]);
 
-            ]);
 
-            if ($validator->fails()) {
-                $arr = [
-                    'success' => false,
-                    'message' => 'Lỗi kiểm tra dữ liệu',
-                    'data' => $validator->errors()
-                ];
-                return response()->json($arr, 200);
-            }
 
-            // $student = Students::save($dataUpdate);
             $subject->update(
                 [
                     'id_semester' => $request->id_semester,
@@ -202,23 +306,7 @@ class SubjectController extends Controller
                     'credit' => $request->credit,
                 ]
             );
-
-            $subjectResource = new SubjectRecource($subject);
-            // return response()->json([
-            //     'data' => $subjectResource,
-            // ]);
-
-            return response()->json([
-                'data' => $subjectResource,
-                'status' => true,
-                'message' => 'Get data Sucess'
-            ]);
-        } else {
-            return response()->json([
-                'data' => '',
-                'status' => false,
-                'message' => 'id not found'
-            ]);
+            return redirect()->back()->with('msg', 'Cập nhật thành công');
         }
     }
 

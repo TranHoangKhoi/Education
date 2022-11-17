@@ -9,7 +9,7 @@ class SubjectType extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id','type_name','created_at','update_at'
+        'id','type','created_at','update_at'
     ];
     protected $table = 'subject_type';
 }

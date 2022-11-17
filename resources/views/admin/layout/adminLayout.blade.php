@@ -22,7 +22,10 @@
     <link rel="stylesheet" href="{{asset('assets/admin')}}/assets/css/custom.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="https://ap.poly.edu.vn/images/logo.png" />
-  </head>
+    {{-- SKEdictor --}}
+    {{-- <script src="{{asset('/ckeditor/ckeditor.js')}}"></script> --}}
+
+</head>
   <body>
     @php
         $rootPath = 'ap-admin';
@@ -96,21 +99,105 @@
             </a>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <a class="nav-link" data-toggle="collapse" href="#notify" aria-expanded="false" aria-controls="notify">
               <span class="menu-icon">
                 <i class="mdi mdi-laptop"></i>
               </span>
-              <span class="menu-title">Danh mục tin tức</span>
+              <span class="menu-title">Quản lý thông báo</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="notify">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{route('catenotification.index')}}">Danh sách danh mục</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Thêm mới danh mục</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('notify.index')}}">Danh sách thông báo</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('notify.create')}}">Thêm mới thông báo</a></li>
                 {{-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> --}}
               </ul>
             </div>
           </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#majors" aria-expanded="false" aria-controls="majors">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Quản lý ngành học</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="majors">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('majors.index')}}">Danh sách ngành học</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('majors.create')}}">Thêm mới ngành học</a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> --}}
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Quản lý Lớp</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('class.index')}}">Danh sách lớp</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('class.create')}}">Thêm mới lớp</a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> --}}
+              </ul>
+            </div>
+          </li>
+
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#subject" aria-expanded="false" aria-controls="subject">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Quản lý môn học</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="subject">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('subject.index')}}">Danh sách môn học</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('subject.create')}}">Thêm mới môn học</a></li>
+                {{-- <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li> --}}
+              </ul>
+            </div>
+          </li>
+
+          {{-- <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#semester" aria-expanded="false" aria-controls="semester">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Quản lý kỳ học</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="semester">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('semester.index')}}">Danh sách kỳ học</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('semester.create')}}">Thêm mới kỳ học</a></li>
+
+              </ul>
+            </div>
+          </li> --}}
+
+          {{-- <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#semester" aria-expanded="false" aria-controls="semester">
+              <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+              </span>
+              <span class="menu-title">Quản lý khóa học</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="semester">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{route('course.index')}}">Danh sách khóa học</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{route('course.create')}}">Thêm mới khóa học</a></li> --}}
+
+              {{-- </ul>
+            </div>
+          </li> --}}
+
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#stdent" aria-expanded="false" aria-controls="stdent">
               <span class="menu-icon">
@@ -400,9 +487,16 @@
                         <i class="mdi mdi-logout text-danger"></i>
                       </div>
                     </div>
-                    <div class="preview-item-content">
-                      <p class="preview-subject mb-1">Log out</p>
-                    </div>
+
+                    <form action="{{route('auth.logout')}}" method="POST">
+                        @csrf()
+                        <div class="preview-item-content">
+                            {{-- <p class="preview-subject mb-1"><a class="nav-link" href="{{route('auth.logout')}}">Log out</a></p> --}}
+                            <button class='btn notification_btn-login'>
+                                Đăng xuất
+                            </button>
+                          </div>
+                    </form>
                   </a>
                   <div class="dropdown-divider"></div>
                   <p class="p-3 mb-0 text-center">Advanced settings</p>
@@ -442,9 +536,12 @@
     <script src="{{asset('assets/admin')}}/assets/vendors/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
     <script src="{{asset('assets/admin')}}/assets/vendors/owl-carousel-2/owl.carousel.min.js"></script>
     <!-- End plugin js for this page -->
+    {{-- CKEditor --}}
+
+
     <!-- inject:js -->
     <script src="{{asset('assets/admin')}}/assets/js/off-canvas.js"></script>
-    <script src="{{asset('assets/admin')}}/assets/js/hoverable-collapse.js"></script>
+    <script src="{{asset('assets/admin')}}/assets/js/hoverable-collapse.js"></scrip>
     <script src="{{asset('assets/admin')}}/assets/js/misc.js"></script>
     <script src="{{asset('assets/admin')}}/assets/js/settings.js"></script>
     <script src="{{asset('assets/admin')}}/assets/js/todolist.js"></script>
@@ -452,5 +549,11 @@
     <!-- Custom js for this page -->
     <script src="{{asset('assets/admin')}}/assets/js/dashboard.js"></script>
     <!-- End custom js for this page -->
+
+    <script src="{{asset('/jquery-3.5.0.min.js')}}"></script>
+    <script src="{{asset('assets/ckeditor/ckeditor.js')}}"></script>
+    <script>
+        var exampleTextarea1 = CKEDITOR.replace('exampleTextarea1');
+    </script>
   </body>
 </html>

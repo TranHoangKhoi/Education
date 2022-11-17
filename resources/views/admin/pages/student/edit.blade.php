@@ -13,7 +13,7 @@
                           A simple success alert—check it out!
                         </div>
                       @endif --}}
-                      
+
                       @if($errors->any())
                         <div class="alert alert-danger" role="alert">
                           Kiểm tra lại dữ liệu !!
@@ -22,7 +22,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('msg') }}
                             {{-- @php --}}
-                                {{ Session::forget('msg') }}  
+                                {{ Session::forget('msg') }}
                             {{-- @endphp --}}
                         </div>
                       @endif

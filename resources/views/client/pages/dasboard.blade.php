@@ -20,16 +20,16 @@
                                 <img class='logo__img' src="https://ap.poly.edu.vn/images/logo.png" alt="Logo" />
                             </a>
                         </div>
-        
+
                         <div class='navbar'>
                             <ul class='navbar__list'>
                                 <li class='navbar__item'>
-                                    <a href='/student' class='navbar__link'>
+                                    <a href='/loginAcount' class='navbar__link'>
                                         Sinh viên
                                     </a>
                                 </li>
                                 <li class='navbar__item'>
-                                    <a href='/student' class='navbar__link'>
+                                    <a href='/loginAcount' class='navbar__link'>
                                         Giảng viên
                                     </a>
                                 </li>
@@ -65,7 +65,7 @@
                                             <h1>Thông tin liên hệ</h1>
                                             <p>Trụ sở chính Tòa nhà FPT Polytechnic, Phố Trịnh Văn Bô, Nam Từ Liêm, Hà Nội</p>
                                         </div>
-        
+
                                         <div class='footer__info--content'>
                                             <div class='gird'>
                                                 <div class='row'>

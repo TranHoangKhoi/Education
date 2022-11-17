@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\MajorsResource;
+use App\Models\Field;
 use App\Models\Majors;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -18,31 +19,35 @@ class MajorsController extends Controller
      */
     public function index(Request $request)
     {
-        $input = $request->all();
-        $input['limit'] = $request->limit;
-        try{
-            $data = Majors::where(function($query) use($input) {
-                if(!empty($input['name_id'])){
-                    $query->where('name_id', 'like', '%'.$input['name_id'].'%');
-                }
-                if(!empty($input['name_major'])){
-                    $query->where('name_major', 'like', '%'.$input['name_major'].'%');
-                }
+        // $input = $request->all();
+        // $input['limit'] = $request->limit;
+        // try{
+        //     $data = Majors::where(function($query) use($input) {
+        //         if(!empty($input['name_id'])){
+        //             $query->where('name_id', 'like', '%'.$input['name_id'].'%');
+        //         }
+        //         if(!empty($input['name_major'])){
+        //             $query->where('name_major', 'like', '%'.$input['name_major'].'%');
+        //         }
 
-            })->orderBy('created_at', 'desc')->paginate(!empty($input['limit']) ? $input['limit'] : 10);
-            $resource= MajorsResource::collection($data);
-        }
-        catch(Exception $e){
-            return response()->json([
-                       'status' => 'Error',
-                       'message' => $e->getMessage()
-                             ],400);
-        }
-        return response()->json([
-                'data' => $resource,
-                'success' => true,
-                'message' => 'Lấy dữ liệu thành công',
-            ],200);
+        //     })->orderBy('created_at', 'desc')->paginate(!empty($input['limit']) ? $input['limit'] : 10);
+        //     $resource= MajorsResource::collection($data);
+        // }
+        // catch(Exception $e){
+        //     return response()->json([
+        //                'status' => 'Error',
+        //                'message' => $e->getMessage()
+        //                      ],400);
+        // }
+        // return response()->json([
+        //         'data' => $resource,
+        //         'success' => true,
+        //         'message' => 'Lấy dữ liệu thành công',
+        //     ],200);
+        $listMajors = Majors::get();
+
+        // dd($listCate);
+        return view('admin.pages.majors.list', compact('listMajors'));
     }
     /**
      * Store a newly created resource in storage.
@@ -52,49 +57,85 @@ class MajorsController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'id_field' => 'required',
-            'name_id' => 'required|max:255|unique:majors',
-            'name_major' => 'required|max:255|unique:majors',
-        ];
+        // $rules = [
+        //     'id_field' => 'required',
+        //     'name_id' => 'required|max:255|unique:majors',
+        //     'name_major' => 'required|max:255|unique:majors',
+        // ];
 
-        try {
-            DB::beginTransaction();
-            $validator = Validator::make($request->all(), $rules,);
-            if($validator->fails()){
-                return response()->json([
-                    'status' => 'error',
-                    'message' => $validator->errors(),
-                ], 422);
-            }
-            if($validator->fails()){
-                return response()->json([
-                    'status' => 'error',
-                    'message' => $validator->errors(),
-                ], 422);
-            }
+        // try {
+        //     DB::beginTransaction();
+        //     $validator = Validator::make($request->all(), $rules,);
+        //     if($validator->fails()){
+        //         return response()->json([
+        //             'status' => 'error',
+        //             'message' => $validator->errors(),
+        //         ], 422);
+        //     }
+        //     if($validator->fails()){
+        //         return response()->json([
+        //             'status' => 'error',
+        //             'message' => $validator->errors(),
+        //         ], 422);
+        //     }
 
-            $data = Majors::create([
-                'id_field'=> $request->id_field,
-                'name_id' => mb_strtoupper($request->name_id),
-                'name_major'=>mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
+        //     $data = Majors::create([
+        //         'id_field'=> $request->id_field,
+        //         'name_id' => mb_strtoupper($request->name_id),
+        //         'name_major'=>mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
+        //     ]);
+        //     DB::commit();
+        // } catch(Exception $e) {
+        //     DB::rollback();
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => $e->getMessage(),
+        //     ], 400);
+
+        // }
+        // return response()->json([
+        //     'data' => new MajorsResource($data),
+        //     'status' => 'success',
+        //     'message' =>'Ngành '. $data->name_major . ' đã được tạo thành công !',
+        // ]);
+
+        {
+            $Input = $request->all();
+            $request->validate([
+                'id_field' => 'required',
+                'name_id' => 'required',
+                'name_major' => 'required',
+
             ]);
-            DB::commit();
-        } catch(Exception $e) {
-            DB::rollback();
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-            ], 400);
 
+
+            // dd($userStore->id);
+
+                Majors::create(
+                    [
+
+                        'id_field' => $request->id_field,
+                        'name_id' => mb_strtoupper($request->name_id),
+                        'name_major' => mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
+                    ]
+                );
+
+            return redirect()->back()->with('msg', 'Thêm thông báo thành công');
         }
-        return response()->json([
-            'data' => new MajorsResource($data),
-            'status' => 'success',
-            'message' =>'Ngành '. $data->name_major . ' đã được tạo thành công !',
-        ]);
 
+    }
+    public function create()
+    {
+        // $notifyCate = NotificationCate::get();
+        $field = Field::get();
+        return view('admin.pages.majors.create', compact('field',));
+    }
 
+    public function edit($id)
+    {
+        $field = Field::get();
+        $majors = Majors::find($id);
+        return view('admin.pages.majors.edit', compact('field','majors'));
     }
 
     /**
@@ -137,42 +178,63 @@ class MajorsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $rules = [
-            'name_id' => 'required|max:255',
-            'id_field' => 'required',
-            'name_major' => 'required|max:255'
-        ];
-        try {
-            $validator = Validator::make($request->all(), $rules,);
-            if($validator->fails()){
-                return response()->json([
-                    'status' => 'error',
-                    'message' => $validator->errors(),
-                ], 422);
-            }
-            $data = Majors::find($id);
-            if(!empty($data)){
-                 $data->update([
-                    'id_field'=> $request->id_field,
+        // $rules = [
+        //     'name_id' => 'required|max:255',
+        //     'id_field' => 'required',
+        //     'name_major' => 'required|max:255'
+        // ];
+        // try {
+        //     $validator = Validator::make($request->all(), $rules,);
+        //     if($validator->fails()){
+        //         return response()->json([
+        //             'status' => 'error',
+        //             'message' => $validator->errors(),
+        //         ], 422);
+        //     }
+        //     $data = Majors::find($id);
+        //     if(!empty($data)){
+        //          $data->update([
+        //             'id_field'=> $request->id_field,
+        //             'name_id' => mb_strtoupper($request->name_id),
+        //             'name_major'=>mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
+        //         ]);
+        //     }
+
+
+
+        // } catch(Exception $e) {
+        //     DB::rollback();
+        //     return response()->json([
+        //         'status' => 'error',
+        //         'message' => $e->getMessage(),
+        //     ], 400);
+
+        // }
+        // return response()->json([
+        //     'status' => 'success',
+        //     'message' =>'Ngành học đã được cập nhật !',
+        // ]);
+        $majors = Majors::find($id);
+        if ($majors) {
+            $Input = $request->all();
+            $request->validate([
+                'id_field' => 'required',
+                'name_id' => 'required',
+                'name_major' => 'required',
+
+            ]);
+
+
+            $majors->update(
+                [
+
+                    'id_field' => $request->id_field,
                     'name_id' => mb_strtoupper($request->name_id),
-                    'name_major'=>mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
-                ]);
-            }
-
-
-
-        } catch(Exception $e) {
-            DB::rollback();
-            return response()->json([
-                'status' => 'error',
-                'message' => $e->getMessage(),
-            ], 400);
-
+                    'name_major' => mb_strtoupper(mb_substr($request->name_major, 0, 1)).mb_substr($request->name_major, 1)
+                ]
+            );
+            return redirect()->back()->with('msg', 'Cập nhật sinh viên thành công');
         }
-        return response()->json([
-            'status' => 'success',
-            'message' =>'Ngành học đã được cập nhật !',
-        ]);
     }
 
     /**
@@ -183,20 +245,23 @@ class MajorsController extends Controller
      */
     public function destroy($id)
     {
-        $data = Majors::find($id);
-        if($data) {
-            $data->delete();
-            return response()->json([
-                'data' => [],
-                'status' => true,
-                'message' => 'Đã xóa '
-            ], 200);
-        } else {
-            return response()->json([
-                'data' => [],
-                'status' => false,
-                'message' => 'id not found'
-            ]);
-        }
+        // $data = Majors::find($id);
+        // if($data) {
+        //     $data->delete();
+        //     return response()->json([
+        //         'data' => [],
+        //         'status' => true,
+        //         'message' => 'Đã xóa '
+        //     ], 200);
+        // } else {
+        //     return response()->json([
+        //         'data' => [],
+        //         'status' => false,
+        //         'message' => 'id not found'
+        //     ]);
+        // }
+        $majors = Majors::find($id);
+        $majors ->delete();
+        return redirect()->back()->with('msg', 'Xóa thành công');
     }
 }

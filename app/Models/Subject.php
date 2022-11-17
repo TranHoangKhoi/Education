@@ -10,7 +10,7 @@ class Subject extends Model
     use HasFactory;
     protected $table = 'subject';
     protected $fillable = [
-        'id_semester', 'id_class', 'id_major', 'type', 'name_id_subject', 'name', 'credit'
+        'id_semester', 'id_class', 'id_major', 'subject_type', 'name_id_subject', 'name', 'credit'
     ];
 
     public function subjectType() {
